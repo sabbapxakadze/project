@@ -2,11 +2,10 @@ const request = require("supertest");
 const app = require("../src/app");
 
 describe("GET /", () => {
-  it("returns welcome message", async () => {
+  it("returns HTML homepage", async () => {
     const res = await request(app).get("/");
     expect(res.status).toBe(200);
-    expect(res.body.status).toBe("ok");
-    expect(res.body.message).toBe("Welcome to the DevOps Web App");
+    expect(res.text).toContain("DevOps Web App");
   });
 });
 
