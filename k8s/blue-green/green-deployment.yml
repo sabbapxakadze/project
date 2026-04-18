@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-web-app-green
+  labels:
+    app: devops-web-app
+    version: green
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: devops-web-app
+      version: green
+  template:
+    metadata:
+      labels:
+        app: devops-web-app
+        version: green
+    spec:
+      containers:
+        - name: app
+          image: devops-web-app:2.0.0
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PORT
+              value: "3000"
+            - name: APP_VERSION
+              value: "green"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+            limits:
+              memory: "128Mi"
+              cpu: "250m"

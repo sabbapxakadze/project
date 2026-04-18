@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-web-app-canary
+  labels:
+    app: devops-web-app
+    track: canary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devops-web-app
+      track: canary
+  template:
+    metadata:
+      labels:
+        app: devops-web-app
+        track: canary
+    spec:
+      containers:
+        - name: app
+          image: devops-web-app:2.0.0
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PORT
+              value: "3000"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
+
+# Canary receives ~25% of traffic (1 out of 4 total pods)
+# Stable has 3 replicas, Canary has 1 replica
+# Both share the same "app: devops-web-app" label so the Service routes to both
+#
+# To rollback canary: kubectl delete -f canary-deployment.yml
+# To promote canary:  update stable image and kubectl delete -f canary-deployment.yml
