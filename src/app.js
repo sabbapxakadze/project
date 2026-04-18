@@ -38,7 +38,7 @@ app.get("/", (req, res) => {
     .item { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #0f3460; border-radius: 6px; margin-bottom: 6px; }
     .item button { background: none; border: none; color: #e94560; cursor: pointer; font-size: 16px; }
     .empty { color: #666; font-style: italic; }
-    #time { color: #2ecc71; }
+    #time { color: #0f5d30; }
   </style>
 </head>
 <body>
