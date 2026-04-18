@@ -3,7 +3,9 @@
     "allow": [
       "Bash(where gh.exe)",
       "Read(//c/Program Files/GitHub CLI/**)",
-      "Read(//c/Program Files \\(x86\\)/GitHub CLI/**)"
+      "Read(//c/Program Files \\(x86\\)/GitHub CLI/**)",
+      "Bash(npm test *)",
+      "Bash(npm run *)"
     ]
   }
 }
