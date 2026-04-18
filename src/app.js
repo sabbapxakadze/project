@@ -46,6 +46,10 @@ app.get("/metrics", (req, res) => {
   );
 });
 
+app.get("/time", (req, res) => {
+  res.json({ currentTime: new Date().toISOString() });
+});
+
 app.get("/items", (req, res) => {
   res.json(items);
 });

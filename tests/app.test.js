@@ -60,6 +60,14 @@ describe("DELETE /items/:id", () => {
   });
 });
 
+describe("GET /time", () => {
+  it("returns current time", async () => {
+    const res = await request(app).get("/time");
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty("currentTime");
+  });
+});
+
 describe("GET /features", () => {
   it("returns feature toggles", async () => {
     const res = await request(app).get("/features");
