@@ -1,6 +1,6 @@
 # DevOps Web App
 
-![CI/CD Pipeline](https://github.com/sabbapxakadze/devops-web-app/actions/workflows/ci-cd.yml/badge.svg)
+![CI/CD Pipeline](https://github.com/sabbapxakadze/project/actions/workflows/ci-cd.yml/badge.svg)
 
 A Node.js/Express web application demonstrating a full CI/CD pipeline with GitHub Actions, automated testing, and continuous deployment to Render.
 
